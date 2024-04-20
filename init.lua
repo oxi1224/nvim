@@ -21,16 +21,22 @@ vim.cmd 'colorscheme darcula-solid'
 vim.cmd 'set termguicolors'
 
 -- lsp
+require('java').setup()
+
 local lsp_zero = require('lsp-zero')
 
-lsp_zero.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(_, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
+require('telescope').setup{ defaults = { file_ignore_patterns = {".gradle", "build"} } }
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {"java_language_server", "tailwindcss", "tsserver", "eslint"},
+  ensure_installed = {"tailwindcss", "tsserver", "eslint", "lua_ls"},
   handlers = {
+    ['jdtls'] = function()
+      require('lspconfig').jdtls.setup({})
+    end,
     function(server_name)
       require('lspconfig')[server_name].setup({})
     end
@@ -43,11 +49,15 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     -- confirm completion
     ['<Tab>'] = cmp.mapping.confirm({select = true}),
-  }),
+  })
 })
+
+cmp.mapping()
 
 -- tabs
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smarttab = true
+vim.wo.relativenumber = true
+vim.opt.clipboard="unnamedplus"

@@ -34,14 +34,14 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function () 
+    config = function ()
       local configs = require("nvim-treesitter.configs")
 
       configs.setup({
           ensure_installed = { "cpp", "lua", "java", "html", "css", "javascript", "typescript" },
           sync_install = false,
           highlight = { enable = true },
-          indent = { enable = true },  
+          indent = { enable = true },
         })
     end
   },
@@ -75,7 +75,7 @@ return {
     },
     config = function()
       require("nvim-tree").setup {}
-    end       
+    end
   },
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
   {'williamboman/mason.nvim'},
@@ -83,5 +83,31 @@ return {
   {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
-  {'L3MON4D3/LuaSnip'}
+  {'L3MON4D3/LuaSnip'},
+  {
+    'numToStr/Comment.nvim',
+    lazy = false
+  },
+  {
+  'nvim-java/nvim-java',
+  dependencies = {
+    'nvim-java/lua-async-await',
+    'nvim-java/nvim-java-core',
+    'nvim-java/nvim-java-test',
+    'nvim-java/nvim-java-dap',
+    'MunifTanjim/nui.nvim',
+    'neovim/nvim-lspconfig',
+    'mfussenegger/nvim-dap',
+    {
+      'williamboman/mason.nvim',
+      opts = {
+        registries = {
+            'github:nvim-java/mason-registry',
+            'github:mason-org/mason-registry',
+          },
+        },
+      }
+    }
+  },
+  { 'tpope/vim-fugitive' }
 }
