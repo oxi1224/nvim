@@ -8,11 +8,9 @@ local config = {
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
-
     -- 💀
     'java', -- or '/path/to/java17_or_newer/bin/java'
             -- depends on if `java` is in your $PATH env variable and if it points to the right version.
-
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -25,7 +23,7 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     '-javaagent:C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\share\\lombok-nightly\\lombok.jar',
     -- 💀
-    '-jar', 'C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\plugins\\org.eclipse.equinox.launcher_1.6.800.v20240304-1850.jar',
+    '-jar', 'C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\plugins\\org.eclipse.equinox.launcher_1.6.800.v20240330-1250.jar',
     -- 💀
     '-configuration', 'C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\config_win',
     -- 💀
