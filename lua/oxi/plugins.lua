@@ -74,7 +74,11 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      require("nvim-tree").setup {}
+      require("nvim-tree").setup({
+        renderer = {
+          group_empty = true,
+        }
+      })
     end
   },
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
@@ -83,31 +87,12 @@ return {
   {'neovim/nvim-lspconfig'},
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
+  {'hrsh7th/cmp-buffer'},
   {'L3MON4D3/LuaSnip'},
   {
     'numToStr/Comment.nvim',
     lazy = false
   },
-  {
-  'nvim-java/nvim-java',
-  dependencies = {
-    'nvim-java/lua-async-await',
-    'nvim-java/nvim-java-core',
-    'nvim-java/nvim-java-test',
-    'nvim-java/nvim-java-dap',
-    'MunifTanjim/nui.nvim',
-    'neovim/nvim-lspconfig',
-    'mfussenegger/nvim-dap',
-    {
-      'williamboman/mason.nvim',
-      opts = {
-        registries = {
-            'github:nvim-java/mason-registry',
-            'github:mason-org/mason-registry',
-          },
-        },
-      }
-    }
-  },
+  { 'mfussenegger/nvim-jdtls' },
   { 'tpope/vim-fugitive' }
 }
