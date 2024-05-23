@@ -1,12 +1,15 @@
 local status_ok, jdtls = pcall(require, "jdtls")
+if not status_ok then
+  print("Failed to require jdtls")
+  return
+end
+
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_path = "C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\share\\jdtls\\workspaces";
 local workspace_dir = workspace_path .. project_name
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
+
 local config = {
-  -- The command that starts the language server
-  -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
     -- 💀
     'java', -- or '/path/to/java17_or_newer/bin/java'
@@ -30,15 +33,7 @@ local config = {
     -- See `data directory configuration` section in the README
     '-data', workspace_dir
   },
-
-  -- 💀
-  -- This is the default if not provided, you can remove it. Or adjust as needed.
-  -- One dedicated LSP server & client will be started per unique root_dir
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'build.gradle', 'pom.xml'}),
-
-  -- Here you can configure eclipse.jdt.ls specific settings
-  -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-  -- for a list of options
   settings = {
     java = {
       eclipse = {
@@ -65,21 +60,24 @@ local config = {
         enabled = false,
       },
     },
+    capabilities = {
+      workspace = {
+        configuration = true,
+      },
+      textDocument = {
+        completion = {
+          completionItem = {
+            snippetSupport = true,
+          }
+        }
+      }
+    },
     signatureHelp = { enabled = true },
     extendedClientCapabilities = extendedClientCapabilities,
   },
-
-  -- Language server `initializationOptions`
-  -- You need to extend the `bundles` with paths to jar files
-  -- if you want to use additional eclipse.jdt.ls plugins.
-  --
-  -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-  --
-  -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
     bundles = {}
   },
 }
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
+config.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 require('jdtls').start_or_attach(config)
