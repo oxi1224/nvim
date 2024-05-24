@@ -4,16 +4,20 @@ if not status_ok then
   return
 end
 
+local data_path = vim.fn.stdpath("data")
+local jdtls_path = data_path .. "/mason/packages/jdtls"
+local workspace_path = data_path .. "/mason/share/jdtls/workspaces";
+
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_path = "C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\share\\jdtls\\workspaces";
 local workspace_dir = workspace_path .. project_name
-local extendedClientCapabilities = jdtls.extendedClientCapabilities
+
+local lombok_path = jdtls_path .. "/lombok.jar"
+local launcher_path = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+local config_path = jdtls_path .. "/config_win"
 
 local config = {
   cmd = {
-    -- 💀
-    'java', -- or '/path/to/java17_or_newer/bin/java'
-            -- depends on if `java` is in your $PATH env variable and if it points to the right version.
+    'java', -- VERY important
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -24,13 +28,9 @@ local config = {
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    '-javaagent:C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\share\\lombok-nightly\\lombok.jar',
-    -- 💀
-    '-jar', 'C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\plugins\\org.eclipse.equinox.launcher_1.6.800.v20240330-1250.jar',
-    -- 💀
-    '-configuration', 'C:\\Users\\oxi12\\AppData\\Local\\nvim-data\\mason\\packages\\jdtls\\config_win',
-    -- 💀
-    -- See `data directory configuration` section in the README
+    '-javaagent:' .. lombok_path,  -- important 
+    '-jar', launcher_path,         -- important 
+    '-configuration', config_path, -- important
     '-data', workspace_dir
   },
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'build.gradle', 'pom.xml'}),
@@ -73,7 +73,7 @@ local config = {
       }
     },
     signatureHelp = { enabled = true },
-    extendedClientCapabilities = extendedClientCapabilities,
+    extendedClientCapabilities = jdtls.extendedClientCapabilities,
   },
   init_options = {
     bundles = {}

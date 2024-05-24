@@ -15,20 +15,20 @@ return {
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end
       },
-      { 
-        "<C-h>",
+      {
+        "<C-1>",
         function() require("harpoon"):list():select(1) end
       },
-      { 
-        "<C-t>",
+      {
+        "<C-2>",
         function() require("harpoon"):list():select(2) end
       },
-      { 
-        "<C-n>",
+      {
+        "<C-3>",
         function() require("harpoon"):list():select(3) end
       },
-      { 
-        "<C-s>",
+      {
+        "<C-4>",
         function() require("harpoon"):list():select(4) end
       },
     }

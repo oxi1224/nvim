@@ -6,7 +6,7 @@ function M.init()
   vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
   vim.keymap.set("n", "<C-_>", function() require('Comment.api').toggle.linewise.current() end, { noremap = true, silent = true })
   vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-  vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float(0, {scope="line"}) end)
+  vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float({ scope="line" }) end)
 end
 
 return M
