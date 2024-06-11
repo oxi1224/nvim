@@ -69,18 +69,20 @@ return {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
-        mapping = cmp.mapping.preset.insert({
-          ['<CR>'] = cmp.mapping.confirm({select = true}),
+        mapping = {
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
           ['<C-k>'] = cmp.mapping.select_prev_item(),
           ['<C-j>'] = cmp.mapping.select_next_item(),
-          ['<C-D>'] = cmp.mapping.open_docs()
-        }),
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete({ noremap = true })
+        },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'luasnip' }, -- For luasnip users.
         }, {
-            { name = 'buffer' },
-          })
+          { name = 'buffer' },
+        })
       })
       cmp.mapping();
     end,

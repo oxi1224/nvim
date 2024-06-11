@@ -1,5 +1,5 @@
 return {
-  {'neovim/nvim-lspconfig'},
+  { 'neovim/nvim-lspconfig' },
   { 'mfussenegger/nvim-jdtls' },
   {
     'VonHeikemen/lsp-zero.nvim', branch = 'v3.x',

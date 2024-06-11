@@ -7,6 +7,10 @@ function M.init()
   vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
   vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float({ scope="line" }) end)
 
+  -- Term keybinds
+  vim.keymap.set('t', '<esc>', function () require("toggleterm").toggle() end)
+  vim.keymap.set('n', '<leader>t', ':ToggleTerm<CR>')
+
   -- Comment keybinds
   vim.keymap.set("n", "<C-_>", function() require('Comment.api').toggle.linewise.current() end, { noremap = true, silent = true })
   local esc = vim.api.nvim_replace_termcodes(
