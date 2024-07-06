@@ -20,8 +20,17 @@ return {
         desc = "Grep"
       },
     },
-    config = function()
-      require('telescope').setup{ defaults = { file_ignore_patterns = {".gradle", "build"} } }
-    end,
+    config = function ()
+      require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = {
+            "build\\.*",
+            "gradle\\.*",
+            "gradlew",
+            "gradlew.bat"
+          }
+        }
+      })
+    end
   }
 }

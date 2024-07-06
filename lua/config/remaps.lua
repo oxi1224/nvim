@@ -6,6 +6,9 @@ function M.init()
   vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
   vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
   vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float({ scope="line" }) end)
+  vim.keymap.set("n", "<leader>d", vim.lsp.buf.hover)
+
+  vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory "})
 
   -- Term keybinds
   vim.keymap.set('t', '<esc>', function () require("toggleterm").toggle() end)
