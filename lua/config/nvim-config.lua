@@ -8,7 +8,7 @@ function M.init()
   vim.wo.number = true
   vim.wo.relativenumber = true
   vim.opt.clipboard="unnamedplus"
-  vim.o.wrap = false; 
+  vim.o.wrap = false
 end
 
 return M
