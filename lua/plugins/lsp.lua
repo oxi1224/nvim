@@ -22,9 +22,16 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = {"tailwindcss", "tsserver", "eslint", "lua_ls", "jdtls"},
+        ensure_installed = {"tailwindcss", "eslint", "lua_ls", "jdtls"},
         handlers = {
           ['jdtls'] = function() end,
+          ['pyright'] = function()
+            require('lspconfig')['pyright'].setup({
+              root_dir = function()
+                return vim.fn.getcwd()
+              end
+            })
+          end,
           function(server_name)
             require('lspconfig')[server_name].setup({})
           end,

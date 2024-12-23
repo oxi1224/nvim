@@ -26,6 +26,7 @@ return {
           file_ignore_patterns = {
             "build\\.*",
             "gradle\\.*",
+            "bin\\.*",
             "gradlew",
             "gradlew.bat"
           }

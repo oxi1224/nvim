@@ -4,15 +4,8 @@ return {
     main = "ibl",
     config = function ()
       require("ibl").setup({
-        indent = {
-          char = "│"
-        },
-        scope = {
-          show_start = false,
-          include = {
-            node_type = { ["*"] = { "*" } },
-          }
-        }
+        indent = { char = "▏" },
+        scope = { show_start = true }
       })
     end
   }
