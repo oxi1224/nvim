@@ -1,11 +1,11 @@
 return {
+  { "rktjmp/lush.nvim", priority = 1001 },
   {
     "briones-gabriel/darcula-solid.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
     priority = 1000,
     config = function ()
       vim.opt.background = 'dark'
-      vim.g.colors_name = 'darcula-solid-tweak'
+      vim.g.colors_name = 'darcula-solid-custom'
 
       local lush = require('lush')
       local darcula_solid = require('lush_theme.darcula-solid')
@@ -18,5 +18,5 @@ return {
 
       lush(spec)
     end
-  }
+  },
 }
