@@ -22,7 +22,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = {"tailwindcss", "eslint", "lua_ls", "jdtls"},
+        ensure_installed = {"tailwindcss", "eslint", "lua_ls", "jdtls", "clangd", "cmake"},
         handlers = {
           ['jdtls'] = function() end,
           ['pyright'] = function()
