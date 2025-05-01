@@ -13,7 +13,8 @@ return {
         return {
           IblIndent { fg = "#606060" },
           IblScope { fg = "#757E87"},
-          Type { fg = "#d194c7" }
+          Type { fg = "#d194c7" },
+          BlinkCmpGhostText { fg = "#606060" },
         }
       end)
 
